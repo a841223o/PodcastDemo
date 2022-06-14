@@ -9,21 +9,31 @@
 /* Begin PBXBuildFile section */
 		B3B6F36128585F76001082B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B6F36028585F76001082B7 /* AppDelegate.swift */; };
 		B3B6F36328585F76001082B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B6F36228585F76001082B7 /* SceneDelegate.swift */; };
-		B3B6F36528585F76001082B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B6F36428585F76001082B7 /* ViewController.swift */; };
-		B3B6F36828585F76001082B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3B6F36628585F76001082B7 /* Main.storyboard */; };
+		B3B6F36528585F76001082B7 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B6F36428585F76001082B7 /* HomePageViewController.swift */; };
 		B3B6F36A28585F77001082B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3B6F36928585F77001082B7 /* Assets.xcassets */; };
 		B3B6F36D28585F77001082B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3B6F36B28585F77001082B7 /* LaunchScreen.storyboard */; };
+		B3B6F377285867C2001082B7 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B6F376285867C2001082B7 /* EpisodeCell.swift */; };
+		B3B6F37C28587B26001082B7 /* EpisodeOCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B6F37B28587B26001082B7 /* EpisodeOCModel.m */; };
+		B3B6F38528588511001082B7 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B6F38428588511001082B7 /* APIError.swift */; };
+		B3B6F387285885BE001082B7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B6F386285885BE001082B7 /* NetworkService.swift */; };
+		B3B6F38B28588A4A001082B7 /* HomePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B6F38A28588A4A001082B7 /* HomePageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B3B6F35D28585F76001082B7 /* PodcastDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcastDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3B6F36028585F76001082B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3B6F36228585F76001082B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B3B6F36428585F76001082B7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B3B6F36728585F76001082B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B3B6F36428585F76001082B7 /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		B3B6F36928585F77001082B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3B6F36C28585F77001082B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3B6F36E28585F77001082B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3B6F376285867C2001082B7 /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
+		B3B6F379285876DF001082B7 /* EpisodeOCModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EpisodeOCModel.h; sourceTree = "<group>"; };
+		B3B6F37B28587B26001082B7 /* EpisodeOCModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EpisodeOCModel.m; sourceTree = "<group>"; };
+		B3B6F37F28587D98001082B7 /* PodcastDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PodcastDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		B3B6F38428588511001082B7 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		B3B6F386285885BE001082B7 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		B3B6F38A28588A4A001082B7 /* HomePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +66,61 @@
 		B3B6F35F28585F76001082B7 /* PodcastDemo */ = {
 			isa = PBXGroup;
 			children = (
+				B3B6F383285884E1001082B7 /* Networking */,
+				B3B6F378285875A9001082B7 /* OldModel */,
+				B3B6F3742858629E001082B7 /* HomePage */,
 				B3B6F36028585F76001082B7 /* AppDelegate.swift */,
 				B3B6F36228585F76001082B7 /* SceneDelegate.swift */,
-				B3B6F36428585F76001082B7 /* ViewController.swift */,
-				B3B6F36628585F76001082B7 /* Main.storyboard */,
 				B3B6F36928585F77001082B7 /* Assets.xcassets */,
 				B3B6F36B28585F77001082B7 /* LaunchScreen.storyboard */,
 				B3B6F36E28585F77001082B7 /* Info.plist */,
 			);
 			path = PodcastDemo;
+			sourceTree = "<group>";
+		};
+		B3B6F3742858629E001082B7 /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				B3B6F38928588A2C001082B7 /* ViewModel */,
+				B3B6F37528586521001082B7 /* View */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		B3B6F37528586521001082B7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B3B6F36428585F76001082B7 /* HomePageViewController.swift */,
+				B3B6F376285867C2001082B7 /* EpisodeCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B3B6F378285875A9001082B7 /* OldModel */ = {
+			isa = PBXGroup;
+			children = (
+				B3B6F379285876DF001082B7 /* EpisodeOCModel.h */,
+				B3B6F37B28587B26001082B7 /* EpisodeOCModel.m */,
+				B3B6F37F28587D98001082B7 /* PodcastDemo-Bridging-Header.h */,
+			);
+			path = OldModel;
+			sourceTree = "<group>";
+		};
+		B3B6F383285884E1001082B7 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B3B6F38428588511001082B7 /* APIError.swift */,
+				B3B6F386285885BE001082B7 /* NetworkService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		B3B6F38928588A2C001082B7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B3B6F38A28588A4A001082B7 /* HomePageViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,6 +155,7 @@
 				TargetAttributes = {
 					B3B6F35C28585F76001082B7 = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 					};
 				};
 			};
@@ -127,7 +184,6 @@
 			files = (
 				B3B6F36D28585F77001082B7 /* LaunchScreen.storyboard in Resources */,
 				B3B6F36A28585F77001082B7 /* Assets.xcassets in Resources */,
-				B3B6F36828585F76001082B7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +194,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3B6F36528585F76001082B7 /* ViewController.swift in Sources */,
+				B3B6F36528585F76001082B7 /* HomePageViewController.swift in Sources */,
+				B3B6F377285867C2001082B7 /* EpisodeCell.swift in Sources */,
 				B3B6F36128585F76001082B7 /* AppDelegate.swift in Sources */,
+				B3B6F387285885BE001082B7 /* NetworkService.swift in Sources */,
+				B3B6F38B28588A4A001082B7 /* HomePageViewModel.swift in Sources */,
 				B3B6F36328585F76001082B7 /* SceneDelegate.swift in Sources */,
+				B3B6F37C28587B26001082B7 /* EpisodeOCModel.m in Sources */,
+				B3B6F38528588511001082B7 /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B3B6F36628585F76001082B7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B3B6F36728585F76001082B7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B3B6F36B28585F77001082B7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -287,13 +340,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PodcastDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -304,6 +357,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = leolun.PodcastDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PodcastDemo/OldModel/PodcastDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -314,13 +369,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PodcastDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -331,6 +386,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = leolun.PodcastDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PodcastDemo/OldModel/PodcastDemo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
