@@ -27,18 +27,23 @@ class NetworkService {
                 return
             }
             
-            if response.statusCode == 200 ,let data = data{
-                let string = String(data: data, encoding: .utf8)
-                
-                    print(string)
-                
-                
-                //complete(.success(EpisodeOCModel()))
-                
+            guard response.statusCode == 200 else{
+                complete(.failure(.unexpect))
+                return
             }
-
+            
+            guard let data = data else {
+                complete(.failure(.unexpect))
+                return
+            }
+            
+            EpisodeParser.init(data: data) { model in
+                if let model = model {
+                    complete(.success(model))
+                }
+            }
+            
         }.resume()
-        complete(.failure(.unexpect))
     }
     
 }

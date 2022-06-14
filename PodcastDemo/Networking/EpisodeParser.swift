@@ -16,12 +16,15 @@ class EpisodeParser : NSObject ,XMLParserDelegate {
     
     var title : String = ""
     var headImageUrl : String = ""
+    var callback : ((EpisodeOCModel?)->())?
     
-    init(data : Data) {
+    init(data : Data , complete :  @escaping (EpisodeOCModel?)->() ) {
         super.init()
+        self.callback = complete
         let parser = XMLParser(data: data)
         parser.delegate = self
         parser.parse()
+        
     }
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
@@ -55,7 +58,6 @@ class EpisodeParser : NSObject ,XMLParserDelegate {
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         
         if isHead {
-            print(currentElement , string)
             if currentElement == "url" {
                 headImageUrl = headImageUrl + " " + string
             }
@@ -94,6 +96,8 @@ class EpisodeParser : NSObject ,XMLParserDelegate {
             let item = EpisodeOCItem.init(dictionary: data )
             model.items.append(item!)
         }
+        
+        self.callback?(model)
         
     }
     
