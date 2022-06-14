@@ -17,6 +17,7 @@
 		B3B6F38528588511001082B7 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B6F38428588511001082B7 /* APIError.swift */; };
 		B3B6F387285885BE001082B7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B6F386285885BE001082B7 /* NetworkService.swift */; };
 		B3B6F38B28588A4A001082B7 /* HomePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B6F38A28588A4A001082B7 /* HomePageViewModel.swift */; };
+		B3B6F38D2858D2DF001082B7 /* EpisodeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B6F38C2858D2DF001082B7 /* EpisodeParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		B3B6F38428588511001082B7 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		B3B6F386285885BE001082B7 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B3B6F38A28588A4A001082B7 /* HomePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewModel.swift; sourceTree = "<group>"; };
+		B3B6F38C2858D2DF001082B7 /* EpisodeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			children = (
 				B3B6F38428588511001082B7 /* APIError.swift */,
 				B3B6F386285885BE001082B7 /* NetworkService.swift */,
+				B3B6F38C2858D2DF001082B7 /* EpisodeParser.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3B6F36528585F76001082B7 /* HomePageViewController.swift in Sources */,
+				B3B6F38D2858D2DF001082B7 /* EpisodeParser.swift in Sources */,
 				B3B6F377285867C2001082B7 /* EpisodeCell.swift in Sources */,
 				B3B6F36128585F76001082B7 /* AppDelegate.swift in Sources */,
 				B3B6F387285885BE001082B7 /* NetworkService.swift in Sources */,
