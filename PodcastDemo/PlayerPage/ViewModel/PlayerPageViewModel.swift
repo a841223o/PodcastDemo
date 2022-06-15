@@ -10,14 +10,16 @@ import AVFoundation
 
 protocol PlayerPageViewModelDelegate : class {
     func playerStatusChange()
+    func playerTimeChange(value:Float)
+    func didChangePlayItem(at index: Int)
 }
 
-class PlayerPageViewModel {
+class PlayerPageViewModel : NSObject {
     
     private var index : Int
     private let model : EpisodeOCModel
-    private var player : AVPlayer
-    private var playItem : AVPlayerItem
+    private var player : AVPlayer!
+    private var playItem : AVPlayerItem!
     var delegate : PlayerPageViewModelDelegate?
     
     var currentItem : EpisodeOCItem  {
@@ -33,18 +35,57 @@ class PlayerPageViewModel {
     }
     
     init(index : Int,  model : EpisodeOCModel){
-        
         self.index = index
         self.model = model
-        playItem = AVPlayerItem.init(url: URL.init(string: "https://feeds.soundcloud.com/stream/1049730745-daodutech-unconsciously-walking-in-starbucks.mp3")!)
+        super.init()
+       
+        NotificationCenter.default.addObserver(self, selector: #selector(audioPlayCompletion), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+        playItem = AVPlayerItem.init(url: URL.init(string: model.items[index].url!)!)
         player = AVPlayer.init(playerItem: playItem)
-        player.play()
+        
         player.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 1, timescale: 1), queue: DispatchQueue.main, using: { time in
             let currentTime = CMTimeGetSeconds(self.player.currentTime())
-           // self.timeLine.value = Float(currentTime)
+            self.delegate?.playerTimeChange(value: Float(currentTime))
         })
+        
+    }
+    @objc func audioPlayCompletion(){
+        guard index + 1 < model.items?.count ?? 0 else{
+            pause()
+            return
+        }
+        next()
+    }
+    func preparePlayer(){
+        setupObserver()
     }
     
+    private func setupObserver(){
+        playItem.addObserver(self, forKeyPath: "status", options: .new, context: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "status" {
+            let status: AVPlayerItem.Status
+                if let statusNumber = change?[.newKey] as? NSNumber {
+                    status = AVPlayerItem.Status(rawValue: statusNumber.intValue)!
+                } else {
+                    status = .unknown
+                }
+
+                // Switch over status value
+                switch status {
+                case .readyToPlay:
+                    print("ready")
+                    play()
+                case .failed:
+                    ()
+                case .unknown:
+                    ()
+                }
+        }
+    }
+  
     func getDuration(complete : ((Float64)->())? ){
         DispatchQueue.global().async {
             let duration = self.playItem.asset.duration
@@ -72,5 +113,42 @@ class PlayerPageViewModel {
         delegate?.playerStatusChange()
     }
     
+    func next(){
+        guard index-1 >= 0 else {
+            return
+        }
+        index -= 1
+        if let model = model.items?[index] , let url = URL.init(string: model.url!) {
+            print(model.title)
+            changePlayItem(url: url)
+        }
+    }
     
+    func pervious(){
+        guard index+1 < model.items?.count ?? 0 else {
+            return
+        }
+        index += 1
+        if let model = model.items?[index] , let url = URL.init(string: model.url!) {
+            print(model.title)
+            changePlayItem(url: url)
+        }
+    }
+    
+    func changePlayItem(url : URL){
+        pause()
+        playItem.removeObserver(self, forKeyPath: "status")
+        let newPlayItem = AVPlayerItem.init(url: url)
+        player.replaceCurrentItem(with: newPlayItem)
+        self.playItem = newPlayItem
+        setupObserver()
+        delegate?.didChangePlayItem(at: index)
+    }
+    
+    func destroyPlayer() {
+        self.player.pause()
+        self.player.currentItem?.cancelPendingSeeks()
+        self.player.currentItem?.asset.cancelLoading()
+        self.player.replaceCurrentItem(with: nil)
+    }
 }

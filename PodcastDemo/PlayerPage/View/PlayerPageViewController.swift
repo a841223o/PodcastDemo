@@ -28,14 +28,12 @@ class PlayerPageViewController : UIViewController {
         setupEpisodeNameLabel()
         setupBtns()
         setupTimeLine()
-        viewModel?.getDuration(complete: { sec in
-            self.timeLine.minimumValue = 0
-            self.timeLine.maximumValue = Float(sec)
-        })
+        setupViewInfo()
+        
+        viewModel?.preparePlayer()
         viewModel?.delegate = self
-        //setupPlayer()
-        //updateUI()
     }
+
     func setupTimeLine(){
         self.view.addSubview(timeLine)
         timeLine.translatesAutoresizingMaskIntoConstraints = false
@@ -63,10 +61,12 @@ class PlayerPageViewController : UIViewController {
         stack.heightAnchor.constraint(equalToConstant: 128).isActive = true
         
         playBtn.addTarget(self, action: #selector(playBtnClick), for: .touchUpInside)
+        preBtn.addTarget(self, action: #selector(previousBtnClick), for: .touchUpInside)
+        nextBtn.addTarget(self, action: #selector(nextBtnClick), for: .touchUpInside)
         playBtn.setBackgroundImage(UIImage.init(systemName: "play.circle"), for: .normal)
         nextBtn.setBackgroundImage(UIImage.init(systemName: "forward"), for: .normal)
         preBtn.setBackgroundImage(UIImage.init(systemName: "backward"), for: .normal)
-        preBtn.imageView?.contentMode = .center
+       
     }
     
     func setPlayBtnStatus(){
@@ -94,6 +94,14 @@ class PlayerPageViewController : UIViewController {
         
     }
     
+    @objc func nextBtnClick(){
+        viewModel?.next()
+    }
+    
+    @objc func previousBtnClick(){
+        viewModel?.pervious()
+    }
+    
     func setupImageView(){
         self.view.addSubview(imageView)
         imageView.layer.cornerRadius = 8
@@ -103,10 +111,6 @@ class PlayerPageViewController : UIViewController {
         imageView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 8).isActive = true
         imageView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -8).isActive = true
         imageView.heightAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        
-        if let viewModel = viewModel {
-            imageView.loadImage(at: URL.init(string: viewModel.currentItem.image)!)
-        }
     }
     
     func setupEpisodeNameLabel(){
@@ -116,18 +120,39 @@ class PlayerPageViewController : UIViewController {
         episodeNameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16).isActive = true
         episodeNameLabel.leftAnchor.constraint(equalTo: imageView.leftAnchor, constant: 0).isActive = true
         episodeNameLabel.rightAnchor.constraint(equalTo: imageView.rightAnchor, constant: 0).isActive = true
-        if let viewModel = viewModel {
-            episodeNameLabel.text = viewModel.currentItem.title
-        }
     }
     
+    func setupViewInfo(){
+        guard let viewModel = viewModel else {
+            return
+        }
+        imageView.loadImage(at: URL.init(string: viewModel.currentItem.image)!)
+        episodeNameLabel.text = viewModel.currentItem.title
+        viewModel.getDuration(complete: { sec in
+            self.timeLine.minimumValue = 0
+            self.timeLine.maximumValue = Float(sec)
+        })
+    }
+    
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewModel?.destroyPlayer()
+    }
     
 }
 
 
 extension PlayerPageViewController : PlayerPageViewModelDelegate {
+    func didChangePlayItem(at index: Int) {
+        setupViewInfo()
+    }
+    
     func playerStatusChange() {
         setPlayBtnStatus()
     }
     
+    func playerTimeChange(value: Float) {
+        timeLine.value = value
+    }
 }
