@@ -49,7 +49,6 @@ class HomePageViewController : UIViewController {
 
 
 extension HomePageViewController : UITableViewDelegate , UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presentToEspisodePage(with: indexPath.row)
     }
@@ -68,10 +67,6 @@ extension HomePageViewController : UITableViewDelegate , UITableViewDataSource {
         return cell
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        self.loadVisibleCellsImage()
-    }
-
     
     func loadVisibleCellsImage(){
         for cell in tableView.visibleCells {

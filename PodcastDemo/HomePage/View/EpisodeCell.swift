@@ -56,7 +56,7 @@ class EpisodeCell : UITableViewCell {
         self.model = model
         self.nameLabel.text = model.title
         self.dateLabel.text = model.date
-        
+        loadImage()
     }
     func loadImage(){
         if let imageStr = self.model?.image , let imageUrl = URL.init(string: imageStr) {
