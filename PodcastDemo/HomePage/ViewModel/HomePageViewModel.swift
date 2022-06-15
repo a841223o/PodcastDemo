@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol ViewModelDelegate : class {
+protocol HomePageViewModelDelegate : class {
     func didLoadData()
 }
 
 class HomePageViewModel {
     var model : EpisodeOCModel?
-    weak var delegate : ViewModelDelegate?
+    weak var delegate : HomePageViewModelDelegate?
     func loadUserEpisodeModel(){
         
         NetworkService().user(of: "322164009") { result in
