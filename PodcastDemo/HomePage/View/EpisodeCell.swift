@@ -14,9 +14,7 @@ class EpisodeCell : UITableViewCell {
     let pictureView : UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .red
-        view.contentMode = .scaleAspectFit
-        view.clipsToBounds = true
+        view.backgroundColor = .white
         return view
         }()
     let nameLabel : UILabel = {
@@ -52,6 +50,22 @@ class EpisodeCell : UITableViewCell {
         
     }
     
+    var model : EpisodeOCItem?
+    
+    func setupMode(model : EpisodeOCItem){
+        self.model = model
+        self.nameLabel.text = model.title
+        self.dateLabel.text = model.date
+        
+    }
+    func loadImage(){
+        if let imageStr = self.model?.image , let imageUrl = URL.init(string: imageStr) {
+            self.pictureView.loadImage(at: imageUrl)
+        }
+    }
+    override func prepareForReuse() {
+        self.pictureView.cancelImageLoad()
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

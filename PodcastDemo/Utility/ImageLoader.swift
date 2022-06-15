@@ -31,7 +31,6 @@ public class ImageLoader {
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             
             defer {self.runningRequests.removeValue(forKey: uuid) }
-            
             if let data = data , let image = UIImage(data: data){
                 self.loadedImages[url] = image
                 self.setImage(image, for: imageView)
@@ -46,7 +45,9 @@ public class ImageLoader {
     }
 
     func cancel(for imageView: UIImageView) {
+        
         imageView.image = nil
+        
         guard let uuid = uuidDic[imageView] else{
             return
         }

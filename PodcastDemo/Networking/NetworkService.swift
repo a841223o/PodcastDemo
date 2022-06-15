@@ -39,7 +39,9 @@ class NetworkService {
             
             EpisodeParser.init(data: data) { model in
                 if let model = model {
-                    complete(.success(model))
+                    DispatchQueue.main.async {
+                        complete(.success(model))
+                    }
                 }
             }
             
