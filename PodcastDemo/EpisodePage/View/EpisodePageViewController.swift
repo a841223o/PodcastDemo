@@ -22,18 +22,26 @@ class EpisodePageViewController : UIViewController {
     
     override func viewDidLoad() {
         self.view.backgroundColor = .white
+        setupScrollerView()
         setupImageView()
         setupTitle()
         setupsubTitle()
         setupSummary()
         setupPlayButton()
+        updateScrollerView()
+    }
+    
+    func setupScrollerView(){
+        self.scrollerView.frame = self.view.frame
+        self.scrollerView.contentSize = CGSize.init(width: self.view.frame.width, height: self.view.frame.height*2)
+        self.view.addSubview(scrollerView)
     }
     
     func setupImageView(){
-        self.view.addSubview(imageView)
+        self.scrollerView.addSubview(imageView)
         imageView.backgroundColor = .white
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
+        imageView.topAnchor.constraint(equalTo: self.scrollerView.topAnchor, constant: 0).isActive = true
         imageView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 8).isActive = true
         imageView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -8).isActive = true
         imageView.heightAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
@@ -44,7 +52,7 @@ class EpisodePageViewController : UIViewController {
     }
     
     func setupTitle(){
-        self.view.addSubview(titleLabel)
+        self.scrollerView.addSubview(titleLabel)
         titleLabel.text = viewModel?.title
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 64).isActive = true
@@ -53,7 +61,7 @@ class EpisodePageViewController : UIViewController {
     }
     
     func setupsubTitle(){
-        self.view.addSubview(subtitleLabel)
+        self.scrollerView.addSubview(subtitleLabel)
         subtitleLabel.text = viewModel?.currentItem.title
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 64).isActive = true
@@ -62,7 +70,7 @@ class EpisodePageViewController : UIViewController {
     }
     
     func setupSummary(){
-        self.view.addSubview(summaryLabel)
+        self.scrollerView.addSubview(summaryLabel)
         summaryLabel.numberOfLines = 100
         summaryLabel.text = viewModel?.currentItem.summary
         summaryLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -81,6 +89,12 @@ class EpisodePageViewController : UIViewController {
         playButton.setTitle("開始播放 ", for: .normal)
         playButton.configuration = .filled()
         playButton.addTarget(self, action: #selector(presentToPlayerPage), for: .touchUpInside)
+    }
+    
+    func updateScrollerView(){
+        self.imageView.layoutIfNeeded()
+        self.summaryLabel.layoutIfNeeded()
+        self.scrollerView.contentSize = CGSize.init(width: self.view.frame.width, height: self.imageView.frame.height + self.summaryLabel.frame.height + 100)
     }
     
     @objc func presentToPlayerPage(){
