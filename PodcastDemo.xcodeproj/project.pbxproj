@@ -78,12 +78,12 @@
 		B3B6F35F28585F76001082B7 /* PodcastDemo */ = {
 			isa = PBXGroup;
 			children = (
-				B3B6F3992859CF3D001082B7 /* PlayerPage */,
 				B3B6F38E2859907A001082B7 /* Utility */,
 				B3B6F383285884E1001082B7 /* Networking */,
 				B3B6F378285875A9001082B7 /* Model */,
 				B3B6F3742858629E001082B7 /* HomePage */,
 				B3B6F3912859BD4D001082B7 /* EpisodePage */,
+				B3B6F3992859CF3D001082B7 /* PlayerPage */,
 				B3B6F36028585F76001082B7 /* AppDelegate.swift */,
 				B3B6F36228585F76001082B7 /* SceneDelegate.swift */,
 				B3B6F36928585F77001082B7 /* Assets.xcassets */,

@@ -24,9 +24,11 @@ public class ImageLoader {
     func load(_ url: URL, for imageView: UIImageView) {
         
         if let image = loadedImages[url] {
+            print("load image with catch")
             setImage(image, for: imageView)
+            return
         }
-        
+        print("load image")
         let uuid = UUID()
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             
